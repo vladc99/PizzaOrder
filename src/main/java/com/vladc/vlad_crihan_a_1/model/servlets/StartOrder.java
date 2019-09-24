@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
  * sent to the next page, it's only for display reasons.
  * NOTE: I've left the script indented the way it is so it's easier to read
  * within the program. It's also indented if you inspect the source of the page
+ * The servlet also checks if fields are empty,null or with only a space.
+ * If that's the case it's going to give you an error page
  * 
  */
 public class StartOrder extends HttpServlet {
@@ -44,6 +46,7 @@ public class StartOrder extends HttpServlet {
             out.println("<html>");
             out.println("<head>");            
             
+            //checking if userName/phoneNumber are null/empty
             if( userName == null || phoneNumber == null ||
                     userName.equals(" ") || phoneNumber.equals(" ") ||
                     userName.isEmpty() || phoneNumber.isEmpty()){
@@ -179,21 +182,22 @@ public class StartOrder extends HttpServlet {
             }
         }
     }
+    //error page for POST method
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-        out.println("<!DOCTYPE html>");
-        out.println("<html>");
-        out.println("<head>");
-        out.println("<title>ERROR</title>");
-        out.println("</head>");
-        out.println("<body>");
-        out.println("<h1>Sorry, POST is NOT supported</h1>");
-        out.println("</body>");
-        out.println("</html>");
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>ERROR</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Sorry, POST is NOT supported</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 }
