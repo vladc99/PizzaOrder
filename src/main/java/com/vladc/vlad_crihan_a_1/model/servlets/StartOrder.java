@@ -44,8 +44,9 @@ public class StartOrder extends HttpServlet {
             out.println("<html>");
             out.println("<head>");            
             
-            if( (userName == null || phoneNumber == null) &&
-                    (userName.equals(" ") || phoneNumber.equals(" "))){
+            if( userName == null || phoneNumber == null ||
+                    userName.equals(" ") || phoneNumber.equals(" ") ||
+                    userName.isEmpty() || phoneNumber.isEmpty()){
                 out.println("<title>ERROR</title>");
                 out.println("</head>");
                 out.println("<body>");
