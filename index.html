@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Test page</title>
+  </head>
+  <body>
+    <h1 id='total'></h1>
+
+    <select id="delivery" name="delivery">
+      <option value="delivery">Delivery</option>
+      <option value="pickUp">PickUp</option>
+    </select>
+
+    <br>
+
+    <input type="radio" id=pizzaSize name="pizzaSize" value="small" checked>Small Pizza
+    <input type="radio" id=pizzaSize name="pizzaSize" value="medium">Medium Pizza
+    <input type="radio" id=pizzaSize name="pizzaSize" value="large">Large Pizza
+
+    <h3>Extras (+$1 each)</h3>
+    <table>
+      <tr>
+        <td> <input type='checkbox' class=toppings name='toppings' value='Pepperoni'>Pepperoni </td>
+        <td> <input type='checkbox' class=toppings name='toppings' value='Sausage'>Sausage </td>
+      </tr>
+      <tr>
+        <td> <input type='checkbox' class=toppings name='toppings' value='Baby Spinach'>Baby Spinach</td>
+        <td> <input type='checkbox' class=toppings name='toppings' value='Pepper'>Pepper</td>
+      </tr>
+    </table>
+
+    <script>
+        var toppings = 0;
+        var size = 5;
+        var delivery = 2;
+        updateTotal();
+
+        function updateTotal(){
+          var total = toppings + size + delivery;
+          document.getElementById('total').innerHTML = 'Your Total is '.concat(total);
+        }
+
+        var isDelivery = document.getElementById('delivery');
+        isDelivery.addEventListener('change',function(e){
+          if(e.target.value == 'delivery'){
+            delivery = 2;
+            updateTotal();
+          }else{
+            delivery = 0;
+            updateTotal();
+          }
+        });
+
+        var extraToppings = document.querySelectorAll('.toppings');
+
+        for (var i = 0; i < extraToppings.length; i++) {
+          extraToppings[i].addEventListener('change',function(e){
+            if(e.target.checked){
+              toppings++;
+              updateTotal();
+            }else{
+              toppings--;
+              updateTotal();
+            }
+          })};
+
+        var pizzaSize = document.querySelectorAll('#pizzaSize');
+        for (var i = 0; i < pizzaSize.length; i++) {
+          pizzaSize[i].addEventListener('change',function(e){
+            if(e.target.value == 'small'){
+              size = 5;
+              updateTotal();
+            }else if(e.target.value == 'medium'){
+              size = 7;
+              updateTotal();
+            }else if(e.target.value == 'large'){
+              size = 9;
+              updateTotal();
+            }
+          })};
+    </script>
+
+  </body>
+</html>

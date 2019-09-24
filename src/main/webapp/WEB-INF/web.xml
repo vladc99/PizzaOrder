@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <servlet>
+        <servlet-name>StartOrder.do</servlet-name>
+        <servlet-class>com.vladc.vlad_crihan_a_1.model.servlets.StartOrder</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlaceOrder.do</servlet-name>
+        <servlet-class>com.vladc.vlad_crihan_a_1.model.servlets.PlaceOrder</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StartOrder.do</servlet-name>
+        <url-pattern>/StartOrder.do</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlaceOrder.do</servlet-name>
+        <url-pattern>/PlaceOrder.do</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+</web-app>
