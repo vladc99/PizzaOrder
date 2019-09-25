@@ -20,6 +20,10 @@ import javax.servlet.http.HttpServletResponse;
  * within the program. It's also indented if you inspect the source of the page
  * The servlet also checks if fields are empty,null or with only a space.
  * If that's the case it's going to give you an error page
+ * NOTE 2: The tempTotal as the name suggests it's a temporary value that's not
+ * affecting the next page.
+ * There's also a doPOST method that redirects you to a error page if somehow
+ * the page is hacked and it tries post as a method.
  * 
  */
 public class StartOrder extends HttpServlet {
@@ -46,6 +50,9 @@ public class StartOrder extends HttpServlet {
             out.println("<html>");
             out.println("<head>");            
             
+            out.println("<link rel=\"stylesheet\" "
+                    + "type=\"text/css\" href=\"styles.css\"/>");
+            
             //checking if userName/phoneNumber are null/empty
             if( userName == null || phoneNumber == null ||
                     userName.equals(" ") || phoneNumber.equals(" ") ||
@@ -58,6 +65,9 @@ public class StartOrder extends HttpServlet {
                 out.println("</html>");
             }else{
                     
+            out.println("<link rel='stylesheet' type='text/css' "
+                    + "href='styles.css'/>");
+            
             out.println("<title>Place your order</title>");
             out.println("</head>");
             out.println("<body>");
@@ -75,7 +85,7 @@ public class StartOrder extends HttpServlet {
                     + " id=pickOrDelivery >"
                     + "<option value='delivery' >Delivery</option>"
                     + "<option value='pickUp' >Pick-Up</option>"
-                    + "</select><br><br>");
+                    + "</select>");
 
             //keeping the name/phone number in invisible tags so the next page
             //has access to them
@@ -85,7 +95,7 @@ public class StartOrder extends HttpServlet {
                     + phoneNumber + "'>");
             
             //radio button for the pizza sizes options
-            out.println("<input type='radio' value='smallPizza' "
+            out.println("<br><br><input type='radio' value='smallPizza' "
                     + "name='pizzaSize' id='pizzaSize' checked>"
                     + "<span>Small($5)</span>"
                     + "<input type='radio' value='mediumPizza'"
@@ -100,23 +110,20 @@ public class StartOrder extends HttpServlet {
             out.println("<h3>Extras (+$1 each)</h3>");
             
             //checkboxes for available toppings
-            out.println("<input type='checkbox' "
-                    + "name='toppings' value='Pepperoni' id=toppings>"
-                    + "<span>Pepperoni</span></lable>");
-            out.println("<input type='checkbox' "
-                    + "name='toppings' value='Sausage' id=toppings>"
-                    + "<span>Sausage</span>");
+            out.println("<input type='checkbox'name='toppings' "
+                    + "value='Pepperoni' id=toppings>Pepperoni");
+            out.println("<input type='checkbox' name='toppings' value='Sausage' "
+                    + "id=toppings>Sausage");
             out.println("<input type='checkbox' name='toppings' "
-                    + "value='Baby Spinach' id=toppings>"
-                    + "<span>Baby Spinach</span>");
-            out.println("<input type='checkbox' "
-                    + "name='toppings' value='Pepper' id=toppings>"
-                    + "<span>Pepper</span>"
+                    + "value='Baby Spinach' id=toppings>Baby Spinach");
+            out.println("<input type='checkbox' name='toppings' "
+                    + "value='Pepper' id=toppings>Pepper"
                     + "<br><br>");
             
             //Submit button
             out.println("<input type='submit' value='Place My Order'>");
             out.println("</form>");
+            
             
             out.println("<script>\n"+
 "        var toppings = 0;\n" +

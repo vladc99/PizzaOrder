@@ -13,6 +13,7 @@
         <title>Order Details</title>
     </head>
     <body>
+        <link rel="stylesheet" type="text/css" href="styles.css"/>
         <!-- get the pizza object -->
         <% PizzaOrder pizza = (PizzaOrder) request.getAttribute("pizza");
         %>
